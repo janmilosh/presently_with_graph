@@ -19,7 +19,7 @@ angular.module('myApp', ['ngRoute', 'ngSanitize'])
 				var d = $q.defer();
 				$http({
 					method: 'GET',
-					url: self.getUrl('forecast', city),
+					url: self.getUrl('forecast10day', city),
 					cache: true
 				}).success(function(data) {
 					d.resolve(data.forecast);
@@ -57,6 +57,10 @@ angular.module('myApp', ['ngRoute', 'ngSanitize'])
 	.when('/settings', {
 		templateUrl: 'templates/settings.html',
 		controller: 'SettingsCtrl'
+	})
+	.when('/hourly', {
+		templateUrl: 'templates/hourly.html',
+		controller: 'HourlyCtrl'
 	})
 	.otherwise({redirectTo: '/'});
 }])

@@ -101,11 +101,11 @@ h1, h2, h3 {
 }
 
 #forecast ul li h3 {
-	font-size: 3em;
+	font-size: 1.5em;
 }
 
 #forecast h4 {
-	font-size: 2em;
+	font-size: 1.1em;
 }
 
 #datetime h4 {
@@ -153,7 +153,7 @@ h1, h2, h3 {
 }
 
 #forecast p {
-	font-size: 1.5em;
+	font-size: 1.2em;
 }
 
 .hover-area {
@@ -165,7 +165,9 @@ h1, h2, h3 {
 }
 
 img {
-	margin-right: 10px;
+	height: 30px;
+	width: 30px;
+	margin-right: 2px;
 }
 
 ul.citylist {
@@ -185,6 +187,11 @@ ul.citylist li:hover {
 	color: #1888BD;
 }
 
+.col-10-percent {
+	width: 10%;
+	float: left;
+}
+
 @media (min-width: 768px) {
 	body {
 		display: flex;
@@ -192,11 +199,11 @@ ul.citylist li:hover {
 	}
 
 	.container {
-		height: 495px;
+		height: 455px;
 	}
 
 	#forecast {
-		height: 156px;
+		height: 125px;
 	}
 
 	.city-input {
@@ -227,6 +234,13 @@ ul.citylist li:hover {
 	}
 }
 
+@media (max-width: 1101px) {
+	
+	.container {
+		height: 568px;
+	}
+}
+
 @media (max-width: 961px) {
 	
 	.long-forecast {
@@ -234,9 +248,6 @@ ul.citylist li:hover {
 		margin-right: 0;
 	}
 
-	.container {
-		height: 594px;
-	}
 }
 
 @media (max-width: 992px) {
@@ -248,11 +259,23 @@ ul.citylist li:hover {
 
 @media (max-width: 767px) {
 
+	.container {
+		margin-top: 30px;
+	}
+	
 	.top-section {
 		margin-bottom: 30px;
 	}
 
 	#forecast ul li {
 		margin-top: 35px;
+	}
+
+	.col-10-percent {
+		width: 50%;
+	}
+
+	#actionbar {
+		top: 0.5em;
 	}
 }

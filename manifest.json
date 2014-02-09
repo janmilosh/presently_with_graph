@@ -1,6 +1,6 @@
 {
 	"manifest_version": 2,
-	"name": "Presently",
+	"name": "10-day-resently",
 	"description": "A currently clone",
 	"version": "0.1",
 	"permissions": [
