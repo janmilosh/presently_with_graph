@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="city-input center-block">
+		<p>{{message}}</p>
+		<form ng-submit="save()">
+			<input 	type="text"
+			  ng-change="searchCities()"      
+				ng-model="user.location">
+			<input class="btn btn-primary"
+				type="submit" value="Save">
+				<ul class="citylist" ng-show="results"> 
+        	<li ng-repeat="result in results" ng-click="choose($index)">{{result.name}}</li> 
+      	</ul>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,31 @@
+<div class="row top-section">
+	<div class="col-sm-6 hidden-xs">
+		<div ng-show="gotWeather" class="long-forecast {{transitionClass}} {{activeClass}}">
+			<p><span>{{dayLabel}}</span> {{dayTime}}<br><br>
+				<span>{{nightLabel}}</span> {{nightTime}}
+			</p>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<div id="datetime" >
+			<h1>{{date.tz | date: 'h:mm a'}}</h1>
+			<h3>{{date.tz | date: 'MMMM d, yyyy'}}</h3>
+			<h4>{{prettyLocation()}}</h4>
+		</div>
+	</div>
+</div>
+<div id="forecast">
+	<ul class="row list-unstyled">
+		<li ng-repeat="day in weather.forecast.simpleforecast.forecastday" class="col-sm-3">
+			<div ng-class="{today: {{$first}}}">
+				<p><img class="{{ day.icon }}" ng-src="{{ day.icon_url }}">
+					<span ng-class="{'hide-snow': {{day.snow_allday.in}} <= 0}">{{day.snow_allday.in}} in</span></p>
+				<h3>
+					<span class="hover-area" ng-mouseover="mouseEnterForecast($index)" ng-mouseout="mouseOutForecast($index)">
+					{{ day.high.fahrenheit }}/{{ day.low.fahrenheit }}</span>
+				</h3>															
+				<h4>{{ day.date.weekday }}</h4>
+			</div>
+		</li>
+	</ul>			
+</div>
