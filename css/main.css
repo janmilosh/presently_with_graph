@@ -14,9 +14,17 @@ ng\:form {
 	display: none;
 }
 
+.full-width {
+	width: 100%;
+}
+
+.container.full-width {
+	width: 100%;
+}
+
 .table-wrapper {
 	height: 500px;
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 td {
@@ -235,6 +243,19 @@ ul.citylist li:hover {
 	}
 }
 
+@media (min-width: 962px) {
+	.long-forecast p {
+		max-height: 220px;
+		overflow: scroll;
+	}
+}
+
+@media (min-width: 992px) {
+
+	.container.full-width {
+		padding: 0;
+	}
+}
 
 @media (max-width: 1199px) {
 	body {
@@ -242,20 +263,10 @@ ul.citylist li:hover {
 		box-shadow: none;
 	}
 
-	.container {
-		width: 1170px;
-	}
-
 	.long-forecast p {
 		max-height: 370px;
 	}
-}
 
-@media (min-width: 962px) {
-	.long-forecast p {
-		max-height: 220px;
-		overflow: scroll;
-	}
 }
 
 @media (max-width: 1101px) {
@@ -275,13 +286,6 @@ ul.citylist li:hover {
 		margin-right: 0;
 	}
 
-}
-
-@media (max-width: 992px) {
-	
-	.container {
-		width: 100%;
-	}
 }
 
 @media (max-width: 767px) {
