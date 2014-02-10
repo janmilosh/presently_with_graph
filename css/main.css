@@ -18,10 +18,6 @@ ng\:form {
 	width: 100%;
 }
 
-.container.full-width {
-	width: 100%;
-}
-
 .table-wrapper {
 	height: 500px;
 	overflow-y: scroll;
@@ -234,6 +230,10 @@ ul.citylist li:hover {
 		height: 460px;
 		width: 100%;
 		max-width: 1170px;
+	}
+
+	.container.full-width {
+		max-width: 100%;
 	}
 
 	#forecast {
