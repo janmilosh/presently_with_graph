@@ -1,0 +1,14 @@
+<div class="hourly-wrapper">
+	<h1>{{user.location}}, {{weather.hourly[0].FCTTIME.pretty}}</h1>
+	<div class="table-wrapper">
+		<table>
+			<tbody>
+				<tr ng-repeat="hour in weather.hourly">
+					<td class="text-right">{{hour.FCTTIME.civil}}</td>
+					<td class="text-right">{{hour.temp.english}} &deg;F</td>
+					<td>{{hour.condition}}, {{hour.snowString}}{{hour.humidity}}% humidity, wind: {{hour.wspd.english}} mph/{{hour.wdir.dir}}, {{hour.pop}}% chance of precipitation.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

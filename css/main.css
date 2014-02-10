@@ -14,6 +14,25 @@ ng\:form {
 	display: none;
 }
 
+.table-wrapper {
+	height: 500px;
+	overflow: scroll;
+}
+
+td {
+	padding: 4px 10px;
+	border: 1px solid #1888BD;
+	font-size: 1.2em;
+}
+
+tr:nth-child(even) {
+	background: #f4f4f4;
+}
+
+table {
+	margin: 0 auto;
+}
+
 .city-input {
 	width: 300px;
 	margin: 100px auto 0;
@@ -65,9 +84,16 @@ body {
 	height: 100%;
 }
 
-h1, h2, h3, h4, p {
+h1, h2, h3, h4, p, table {
 	font-family: 'Varela Round', sans-serif;
 	color: #1888BD;
+}
+
+.hourly-wrapper h1 {
+	margin-top: -55px;
+	margin-bottom: 20px;
+	font-size: 2em;
+	text-align: center;
 }
 
 ul {
@@ -236,6 +262,9 @@ ul.citylist li:hover {
 
 @media (max-width: 1101px) {
 	
+	.hourly-wrapper h1 {
+		margin-top: 0;		
+	}
 	.container {
 		height: 568px;
 	}
@@ -262,7 +291,7 @@ ul.citylist li:hover {
 	.container {
 		margin-top: 30px;
 	}
-	
+
 	.top-section {
 		margin-bottom: 30px;
 	}
@@ -277,5 +306,9 @@ ul.citylist li:hover {
 
 	#actionbar {
 		top: 0.5em;
+	}
+
+	.hourly-wrapper h1 {
+		margin-top: 20px;
 	}
 }

@@ -28,6 +28,19 @@ angular.module('myApp', ['ngRoute', 'ngSanitize'])
 				});
 				return d.promise;
 			},
+			getHourlyForecast: function(city) {
+				var d = $q.defer();
+				$http({
+					method: 'GET',
+					url: self.getUrl('hourly', city),
+					cache: true
+				}).success(function(data) {
+					d.resolve(data.hourly_forecast);
+				}).error(function(err) {
+					d.reject(err);
+				});
+				return d.promise;
+			},
 			getCityDetails: function(query) {
 			  var d = $q.defer();
 			  $http({
@@ -207,4 +220,26 @@ angular.module('myApp', ['ngRoute', 'ngSanitize'])
     $scope.choose = function(index) {
 			$scope.user.location = $scope.results[index].name;
 		}	
+})
+
+.controller('HourlyCtrl',
+	function($scope, Weather, UserService) {
+		$scope.weather = {};
+		$scope.success = false;
+		$scope.user = UserService.user;
+		if(!$scope.user.location) {
+			$scope.user.location = 'autoip';
+		}
+		Weather.getHourlyForecast($scope.user.location)
+		.then(function(data) {
+			$scope.success = true;
+			$scope.weather.hourly = data;
+			for(var i = 0; i < data.length; i++) {
+				if($scope.weather.hourly[i].snow.english > 0 ) {
+					$scope.weather.hourly[i].snowString = $scope.weather.hourly[i].snow.english + ' in. snow, ';
+				} else {
+					$scope.weather.hourly[i].snowString = '';
+				}
+			}
+		});
 });
