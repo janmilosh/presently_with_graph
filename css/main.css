@@ -127,11 +127,11 @@ h1, h2, h3 {
 }
 
 #forecast ul li h3 {
-	font-size: 1.5em;
+	font-size: 1.8em;
 }
 
 #forecast h4 {
-	font-size: 1.1em;
+	font-size: 1.5em;
 }
 
 #datetime h4 {
@@ -191,8 +191,6 @@ h1, h2, h3 {
 }
 
 img {
-	height: 30px;
-	width: 30px;
 	margin-right: 2px;
 }
 
@@ -213,8 +211,8 @@ ul.citylist li:hover {
 	color: #1888BD;
 }
 
-.col-10-percent {
-	width: 10%;
+.col-14-percent {
+	width: 14.28%;
 	float: left;
 }
 
@@ -225,11 +223,11 @@ ul.citylist li:hover {
 	}
 
 	.container {
-		height: 455px;
+		height: 460px;
 	}
 
 	#forecast {
-		height: 125px;
+		height: 130px;
 	}
 
 	.city-input {
@@ -300,7 +298,7 @@ ul.citylist li:hover {
 		margin-top: 35px;
 	}
 
-	.col-10-percent {
+	.col-14-percent {
 		width: 50%;
 	}
 

@@ -16,7 +16,7 @@
 </div>
 <div id="forecast">
 	<ul class="row list-unstyled">
-		<li ng-repeat="day in weather.forecast.simpleforecast.forecastday" class="col-10-percent">
+		<li ng-repeat="day in weather.forecast.simpleforecast.forecastday | limitTo:7" class="col-14-percent">
 			<div ng-class="{today: {{$first}}}">
 				<p><img class="{{ day.icon }}" ng-src="{{ day.icon_url }}">
 					<span ng-class="{'hide-snow': {{day.snow_allday.in}} <= 0}">{{day.snow_allday.in}} in</span></p>
@@ -25,7 +25,6 @@
 					{{ day.high.fahrenheit }}/{{ day.low.fahrenheit }}</span>
 				</h3>															
 				<h4>{{ day.date.weekday }}</h4>
-				<h4>{{ day.date.month }}/{{ day.date.day }}</h4>
 			</div>
 		</li>
 	</ul>			
