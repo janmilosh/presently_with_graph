@@ -208,7 +208,7 @@ ul.citylist {
   font-size: 1.2em;
   cursor: pointer;
   max-height: 250px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 ul.citylist li:hover {
@@ -245,12 +245,12 @@ ul.citylist li:hover {
 	}
 }
 
-@media (min-width: 962px) {
+/*@media (min-width: 962px) {
 	.long-forecast p {
 		max-height: 220px;
-		overflow: scroll;
+		overflow-y: scroll;
 	}
-}
+}*/
 
 @media (min-width: 992px) {
 
