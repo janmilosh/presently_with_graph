@@ -271,18 +271,14 @@ ul.citylist li:hover {
 
 }
 
-@media (max-width: 967px) {
+@media (max-width: 961px) {
 	
 	.hourly-wrapper h1 {
 		margin-top: -15px;		
 	}
 	.container {
 		height: 542px;
-	}
-}
 
-@media (max-width: 961px) {
-	
 	.long-forecast {
 		margin-left: 0;
 		margin-right: 0;
