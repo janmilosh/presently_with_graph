@@ -236,7 +236,7 @@ angular.module('myApp', ['ngRoute', 'ngSanitize'])
 			$scope.weather.hourly = data;
 			for(var i = 0; i < data.length; i++) {
 				if($scope.weather.hourly[i].snow.english > 0 ) {
-					$scope.weather.hourly[i].snowString = $scope.weather.hourly[i].snow.english + ' in. snow, ';
+					$scope.weather.hourly[i].snowString = ', ' + $scope.weather.hourly[i].snow.english + ' inches';
 				} else {
 					$scope.weather.hourly[i].snowString = '';
 				}

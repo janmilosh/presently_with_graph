@@ -7,7 +7,9 @@
 					<tr ng-repeat="hour in weather.hourly">
 						<td class="text-right">{{hour.FCTTIME.civil}}</td>
 						<td class="text-right">{{hour.temp.english}} &deg;F</td>
-						<td>{{hour.condition}}, {{hour.snowString}}{{hour.humidity}}% humidity, wind: {{hour.wspd.english}} mph/{{hour.wdir.dir}}, {{hour.pop}}% chance of precipitation.</td>
+						<td>{{hour.condition}}{{hour.snowString}}</td>
+						<td>{{hour.humidity}}% humidity, wind: {{hour.wspd.english}} mph/{{hour.wdir.dir}}</td>
+						<td>{{hour.pop}}% chance of precipitation</td>
 					</tr>
 				</tbody>
 			</table>
