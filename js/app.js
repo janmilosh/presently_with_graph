@@ -102,7 +102,6 @@ angular.module('myApp', ['ngRoute', 'ngSanitize'])
 		// Which caused an error in ng-class
 		for (var i = 0; i < 7; i ++) {
 			$scope.snow[i] = $scope.weather.forecast.simpleforecast.forecastday[i].snow_allday.in;
-			console.log('before', $scope.snow[i])
 			if (typeof($scope.snow[i]) !== "number") {
 				$scope.snow[i] = 0;
 			}
