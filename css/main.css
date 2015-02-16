@@ -70,7 +70,7 @@ input[type="text"] {
 	color: #1888BD;
 }
 
-a:hover {
+a:hover, a:focus, a:visited {
 	text-decoration: none;
 }
 
@@ -115,7 +115,7 @@ h1, h2, h3 {
 }
 
 #datetime h1 {
-	font-size: 8em;
+	font-size: 100px;
 }
 
 #datetime h2 {
@@ -139,7 +139,7 @@ h1, h2, h3 {
 }
 
 #datetime h4 {
-	font-size: 1.6em;
+	font-size: 30px;
 	margin: 20px 0 0;
 }
 
@@ -191,7 +191,7 @@ h1, h2, h3 {
 }
 
 .top-section {
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 }
 
 img {
@@ -227,9 +227,8 @@ ul.citylist li:hover {
 	}
 
 	.container {
-		height: 460px;
 		width: 100%;
-		max-width: 1170px;
+		max-width: 1200px;
 	}
 
 	.container.full-width {
@@ -241,7 +240,7 @@ ul.citylist li:hover {
 	}
 
 	.city-input {
-		margin-top: 180px;
+		margin-top: -100px;
 	}
 }
 

@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute', 'ngSanitize'])
+var app = angular.module('myApp', ['ngRoute', 'ngSanitize'])
 
 .provider('Weather', function() {
 	var apiKey = "";

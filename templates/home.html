@@ -1,33 +1,30 @@
 <div class="container">
-	<div class="row top-section">
-		<div class="col-sm-6 hidden-xs">
-			<div ng-show="gotWeather" class="long-forecast {{transitionClass}} {{activeClass}}">
-				<p><span>{{dayLabel}}</span> {{dayTime}}<br><br>
-					<span>{{nightLabel}}</span> {{nightTime}}
-				</p>
-			</div>
-		</div>
-		<div class="col-sm-6">
-			<div id="datetime" >
-				<h1>{{date.tz | date: 'h:mm a'}}</h1>
-				<h3>{{date.tz | date: 'MMMM d, yyyy'}}</h3>
-				<h4>{{prettyLocation()}}</h4>
-			</div>
-		</div>
-	</div>
-	<div id="forecast">
-		<ul class="row list-unstyled">
-			<li ng-repeat="day in weather.forecast.simpleforecast.forecastday | limitTo:7" class="col-14-percent">
-				<div ng-class="{today: {{$first}}}">
-					<p><img class="{{ day.icon }}" ng-src="{{ day.icon_url }}">
-						<span ng-class="{'hide-snow': {{snow[$index]}} <= 0}">{{snow[$index]}} in</span></p>
-					<h3>
-						<span class="hover-area" ng-mouseover="mouseEnterForecast($index)" ng-mouseout="mouseOutForecast($index)">
-						{{ day.high.fahrenheit }}/{{ day.low.fahrenheit }}</span>
-					</h3>															
-					<h4>{{ day.date.weekday }}</h4>
-				</div>
-			</li>
-		</ul>			
-	</div>
+  <div class="row top-section">
+    <div class="col-md-7 hidden-sm hidden-xs">
+      <div ng-show="gotWeather" id="graph" >
+        <svg height="380" width="670"></svg> 
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div id="datetime" >
+        <h1>{{date.tz | date: 'h:mm a'}}</h1>
+        <h3>{{date.tz | date: 'MMMM d, yyyy'}}</h3>
+        <h4>{{prettyLocation()}}</h4>
+      </div>
+    </div>
+  </div>
+  <div id="forecast">
+    <ul class="row list-unstyled">
+      <li ng-repeat="day in weather.forecast.simpleforecast.forecastday | limitTo:7" class="col-14-percent">
+        <div>
+          <p><img class="{{ day.icon }}" ng-src="{{ day.icon_url }}">
+            <span ng-class="{'hide-snow': {{snow[$index]}} <= 0}">{{snow[$index]}} in</span></p>
+          <h3>
+            {{ day.high.fahrenheit }}/{{ day.low.fahrenheit }}
+          </h3>                             
+          <h4>{{ day.date.weekday }}</h4>
+        </div>
+      </li>
+    </ul>     
+  </div>
 </div>

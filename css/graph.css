@@ -1,0 +1,68 @@
+svg {
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  background: #fff;
+}
+
+.record-line {
+  stroke: #D65511;
+  stroke-width: 2px;
+}
+
+.record-text {
+  fill: #D65511;
+}
+
+.normal-line {
+  stroke: #54E054;
+  stroke-width: 2px;
+}
+
+.normal-text {
+  fill: #54E054;
+}
+
+.normal-rect {
+  fill: #f4f4f4;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #5A78BB;
+  stroke-width: 2px;
+  shape-rendering: crispEdges;
+}
+
+text.title,
+text.label {
+  font-family: helvetica;
+  fill: #5A78BB;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.label {
+  font-size: 16px;
+}
+
+.tick text {
+  font-family: helvetica;
+  fill: #5A78BB;
+  text-transform: lowercase;
+}
+
+.line {
+  fill: none;
+  stroke: #5A78BB;
+  stroke-width: 3px;
+}
+
+
+@media (max-width: 600px) {
+
+  svg {
+    display: none;
+  }
+
+}
