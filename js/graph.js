@@ -4,7 +4,7 @@ app.factory('MakeGraph', function () {
 
       var svgHeight = 380;
       var svgWidth = 670;
-      var margin = {top: 15, right: 15, bottom: 50, left: 50};
+      var margin = {top: 15, right: 20, bottom: 50, left: 50};
       var height = svgHeight - margin.top - margin.bottom;
       var width = svgWidth - margin.left - margin.right;
 
