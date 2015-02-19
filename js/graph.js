@@ -96,7 +96,6 @@ app.factory('MakeGraph', function () {
         .attr('x2', width)
         .attr('y2', yScale(recordHigh))
         .attr('y1', yScale(recordHigh))
-        .style('stroke-dasharray', ('3, 3'))
         .attr('class', 'record-line');
 
       //Add line for the record low
@@ -105,7 +104,6 @@ app.factory('MakeGraph', function () {
         .attr('x2', width)
         .attr('y2', yScale(recordLow))
         .attr('y1', yScale(recordLow))
-        .style('stroke-dasharray', ('3, 3'))
         .attr('class', 'record-line');
 
       //Add text for record high
@@ -140,7 +138,6 @@ app.factory('MakeGraph', function () {
         .attr('x2', width)
         .attr('y2', yScale(normalHigh))
         .attr('y1', yScale(normalHigh))
-        .style('stroke-dasharray', ('3, 3'))
         .attr('class', 'normal-line');
 
       //Add line for the normal low
@@ -149,7 +146,6 @@ app.factory('MakeGraph', function () {
         .attr('x2', width)
         .attr('y2', yScale(normalLow))
         .attr('y1', yScale(normalLow))
-        .style('stroke-dasharray', ('3, 3'))
         .attr('class', 'normal-line');
 
       //Add text for normal high

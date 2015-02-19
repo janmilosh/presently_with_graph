@@ -227,7 +227,8 @@ svg {
 
 .record-line {
   stroke: #E27C00;
-  stroke-width: 2px;
+  stroke-width: 1px;
+  stroke-dasharray: 8px, 1px;
 }
 
 .record-text {
@@ -236,7 +237,8 @@ svg {
 
 .normal-line {
   stroke: #1888BD;
-  stroke-width: 2px;
+  stroke-width: 1px;
+  stroke-dasharray: 8px, 1px;
 }
 
 .normal-text {
