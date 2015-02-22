@@ -39,14 +39,16 @@ table {
 
 .city-input {
   width: 300px;
-  margin: 100px auto 0;
+  margin: 0 auto;
 }
 
-.button {
+input[type="submit"] {
+  margin-top: 0px;
   float: right;
 }
 
 input[type="text"] {
+  margin-top: 0px;
   width: 235px;
   height: 35px;
   float: left;
