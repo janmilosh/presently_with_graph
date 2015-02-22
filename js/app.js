@@ -95,18 +95,20 @@ var app = angular.module('myApp', ['ngRoute', 'ngSanitize'])
     try {
       MakeGraph.draw($scope.weather, $scope.user.location);
       $scope.timezone = $scope.weather.forecast.simpleforecast.forecastday[0].date.tz_long;
-    }
-    catch (e) {
-      $location.path('/settings');
-    }
-    // This was added to solve the problem of null values for inches of snow
-    // Which caused an error in ng-class
-    for (var i = 0; i < 7; i ++) {
-      $scope.snow[i] = $scope.weather.forecast.simpleforecast.forecastday[i].snow_allday.in;
-      if (typeof($scope.snow[i]) !== "number") {
-        $scope.snow[i] = 0;
+      
+      // This was added to solve the problem of null values for inches of snow
+      // Which caused an error in ng-class
+      for (var i = 0; i < 7; i ++) {
+        $scope.snow[i] = $scope.weather.forecast.simpleforecast.forecastday[i].snow_allday.in;
+        if (typeof($scope.snow[i]) !== "number") {
+          $scope.snow[i] = 0;
+        }
       }
+
+    } catch (e) {
+      console.log(e)
     }
+    
   });
 
   $scope.date = {};
@@ -149,7 +151,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngSanitize'])
       $scope.timezone = $scope.weather.forecast.simpleforecast.forecastday[0].date.tz_long;
     }
     catch (e) {
-      $location.path('/settings');
+      console.log(e);
       $rootScope.locationError = true;
       $rootScope.message = 'Please try another location.';
     }

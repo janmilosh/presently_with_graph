@@ -65,6 +65,162 @@ app.factory('MakeGraph', function () {
         yRange[0] -= 8;
         yRange[1] += 8;
 
+        if (yRange[0] > 0) {
+          yRange[0] = 0;
+        }
+        if (yRange[1] < 90) {
+          yRange[1] = 90;
+        }
+        var xScale = d3.time.scale()
+          .domain(xRange).nice()
+          .range([0, width]);
+        var yScale = d3.scale.linear()
+          .domain(yRange).nice() 
+          .range([height, 0]);
+
+        //Add line for the record high
+        svgSelection.append('line')
+          .attr('x1', 0)
+          .attr('x2', width)
+          .attr('y2', yScale(recordHigh))
+          .attr('y1', yScale(recordHigh))
+          .attr('class', 'record-line');
+
+        //Add line for the record low
+        svgSelection.append('line')
+          .attr('x1', 0)
+          .attr('x2', width)
+          .attr('y2', yScale(recordLow))
+          .attr('y1', yScale(recordLow))
+          .attr('class', 'record-line');
+
+        //Add text for record high
+        svgSelection.append('text')
+          .attr('class', 'record-text')
+          .attr('x', width)
+          .attr('y', yScale(recordHigh))
+          .attr('text-anchor', 'end')
+          .attr('dy', '-8')  
+          .text('Record high in ' + recordHighYear);
+
+        //Add text for record low
+        svgSelection.append('text')
+          .attr('class', 'record-text')
+          .attr('x', width)
+          .attr('y', yScale(recordLow))
+          .attr('text-anchor', 'end')
+          .attr('dy', '18')  
+          .text('Record low in ' + recordLowYear);
+
+        //Bound the normal temps by a rectangle
+        svgSelection.append('rect')
+          .attr('x', 0)
+          .attr('y', yScale(normalHigh))
+          .attr('height', yScale(normalLow)-yScale(normalHigh))
+          .attr('width', width)
+          .attr('class', 'normal-rect');
+
+        //Add line for the normal high
+        svgSelection.append('line')
+          .attr('x1', 0)
+          .attr('x2', width)
+          .attr('y2', yScale(normalHigh))
+          .attr('y1', yScale(normalHigh))
+          .attr('class', 'normal-line');
+
+        //Add line for the normal low
+        svgSelection.append('line')
+          .attr('x1', 0)
+          .attr('x2', width)
+          .attr('y2', yScale(normalLow))
+          .attr('y1', yScale(normalLow))
+          .attr('class', 'normal-line');
+
+        //Add text for normal high
+        svgSelection.append('text')
+          .attr('class', 'normal-text')
+          .attr('x', 0)
+          .attr('y', yScale(normalHigh))
+          .attr('text-anchor', 'left')
+          .attr('dy', '-8')
+          .attr('dx', '8')
+          .text('Normal high');
+
+        //Add text for normal low
+        svgSelection.append('text')
+          .attr('class', 'normal-text')
+          .attr('x', 0)
+          .attr('y', yScale(normalLow))
+          .attr('text-anchor', 'left')
+          .attr('dy', '18')
+          .attr('dx', '8') 
+          .text('Normal low');
+
+        //Define and add hourly temperature as a line 
+        var line = d3.svg.line()
+          .interpolate('basis')
+          .x(function(d) { return xScale(d.time); })
+          .y(function(d) { return yScale(d.temp); });
+
+        svgSelection.append('path')
+          .datum(hourlyDataArray)
+          .attr('class', 'line')
+          .attr('d', line);
+
+        //Add x and y axis
+        var xAxis = d3.svg.axis()
+          .scale(xScale)
+          .orient('bottom')
+          .ticks(d3.time.hours(xRange[0], xRange[1]).length)
+          .tickFormat(dateFormat)
+          .ticks(8);
+
+        var yAxis = d3.svg.axis()
+          .scale(yScale)
+          .orient('left')
+          .ticks(8);
+        
+        svgSelection.append('g')
+          .attr('class', 'axis')
+          .attr('transform', 'translate(0, ' + height + ')')
+          .call(xAxis);
+
+        svgSelection.append('g')
+          .attr('class', 'axis')
+          .call(yAxis);
+
+        //Add title and label text
+        svgSelection.append('text')
+          .attr('class', 'title')
+          .attr('x', (width/2))
+          .attr('y', 0 - (margin.top/2))
+          .attr('text-anchor', 'middle')
+          .attr('dy', '10')
+          .text('Hourly Forecast');
+
+        svgSelection.append('text')
+          .attr('class', 'label')
+          .attr('x', 0)
+          .attr('y', height + margin.bottom/2)
+          .attr('dy', '16')
+          .attr('text-anchor', 'left')  
+          .text(startDate);
+
+        svgSelection.append('text')
+          .attr('class', 'label')
+          .attr('x', width)
+          .attr('y', height + margin.bottom/2)
+          .attr('dy', '16')
+          .attr('text-anchor', 'end')  
+          .text(endDate);
+
+        svgSelection.append('text')
+          .attr('class', 'label')
+          .attr('dx', '-40')
+          .attr('y', height/2)
+          .attr('text-anchor', 'middle')  
+          .text('°F');
+
       } catch(e) {
         //If there's a problem with the data, log out the error and print a message
         console.log(e);
@@ -74,164 +230,9 @@ app.factory('MakeGraph', function () {
           .attr('x', (width/2 - 13))
           .attr('y', (height/2))
           .attr('text-anchor', 'middle')
-          .text('There is no hourly data for this location. Please try another.');
+          .text('There is currently no data for this location.');
       }
 
-      if (yRange[0] > 0) {
-        yRange[0] = 0;
-      }
-      if (yRange[1] < 90) {
-        yRange[1] = 90;
-      }
-      var xScale = d3.time.scale()
-        .domain(xRange).nice()
-        .range([0, width]);
-      var yScale = d3.scale.linear()
-        .domain(yRange).nice() 
-        .range([height, 0]);
-
-      //Add line for the record high
-      svgSelection.append('line')
-        .attr('x1', 0)
-        .attr('x2', width)
-        .attr('y2', yScale(recordHigh))
-        .attr('y1', yScale(recordHigh))
-        .attr('class', 'record-line');
-
-      //Add line for the record low
-      svgSelection.append('line')
-        .attr('x1', 0)
-        .attr('x2', width)
-        .attr('y2', yScale(recordLow))
-        .attr('y1', yScale(recordLow))
-        .attr('class', 'record-line');
-
-      //Add text for record high
-      svgSelection.append('text')
-        .attr('class', 'record-text')
-        .attr('x', width)
-        .attr('y', yScale(recordHigh))
-        .attr('text-anchor', 'end')
-        .attr('dy', '-8')  
-        .text('Record high in ' + recordHighYear);
-
-      //Add text for record low
-      svgSelection.append('text')
-        .attr('class', 'record-text')
-        .attr('x', width)
-        .attr('y', yScale(recordLow))
-        .attr('text-anchor', 'end')
-        .attr('dy', '18')  
-        .text('Record low in ' + recordLowYear);
-
-      //Bound the normal temps by a rectangle
-      svgSelection.append('rect')
-        .attr('x', 0)
-        .attr('y', yScale(normalHigh))
-        .attr('height', yScale(normalLow)-yScale(normalHigh))
-        .attr('width', width)
-        .attr('class', 'normal-rect');
-
-      //Add line for the normal high
-      svgSelection.append('line')
-        .attr('x1', 0)
-        .attr('x2', width)
-        .attr('y2', yScale(normalHigh))
-        .attr('y1', yScale(normalHigh))
-        .attr('class', 'normal-line');
-
-      //Add line for the normal low
-      svgSelection.append('line')
-        .attr('x1', 0)
-        .attr('x2', width)
-        .attr('y2', yScale(normalLow))
-        .attr('y1', yScale(normalLow))
-        .attr('class', 'normal-line');
-
-      //Add text for normal high
-      svgSelection.append('text')
-        .attr('class', 'normal-text')
-        .attr('x', 0)
-        .attr('y', yScale(normalHigh))
-        .attr('text-anchor', 'left')
-        .attr('dy', '-8')
-        .attr('dx', '8')
-        .text('Normal high');
-
-      //Add text for normal low
-      svgSelection.append('text')
-        .attr('class', 'normal-text')
-        .attr('x', 0)
-        .attr('y', yScale(normalLow))
-        .attr('text-anchor', 'left')
-        .attr('dy', '18')
-        .attr('dx', '8') 
-        .text('Normal low');
-
-      //Define and add hourly temperature as a line 
-      var line = d3.svg.line()
-        .interpolate('basis')
-        .x(function(d) { return xScale(d.time); })
-        .y(function(d) { return yScale(d.temp); });
-
-      svgSelection.append('path')
-        .datum(hourlyDataArray)
-        .attr('class', 'line')
-        .attr('d', line);
-
-      //Add x and y axis
-      var xAxis = d3.svg.axis()
-        .scale(xScale)
-        .orient('bottom')
-        .ticks(d3.time.hours(xRange[0], xRange[1]).length)
-        .tickFormat(dateFormat)
-        .ticks(8);
-
-      var yAxis = d3.svg.axis()
-        .scale(yScale)
-        .orient('left')
-        .ticks(8);
-      
-      svgSelection.append('g')
-        .attr('class', 'axis')
-        .attr('transform', 'translate(0, ' + height + ')')
-        .call(xAxis);
-
-      svgSelection.append('g')
-        .attr('class', 'axis')
-        .call(yAxis);
-
-      //Add title and label text
-      svgSelection.append('text')
-        .attr('class', 'title')
-        .attr('x', (width/2))
-        .attr('y', 0 - (margin.top/2))
-        .attr('text-anchor', 'middle')
-        .attr('dy', '10')
-        .text('Hourly Forecast');
-
-      svgSelection.append('text')
-        .attr('class', 'label')
-        .attr('x', 0)
-        .attr('y', height + margin.bottom/2)
-        .attr('dy', '16')
-        .attr('text-anchor', 'left')  
-        .text(startDate);
-
-      svgSelection.append('text')
-        .attr('class', 'label')
-        .attr('x', width)
-        .attr('y', height + margin.bottom/2)
-        .attr('dy', '16')
-        .attr('text-anchor', 'end')  
-        .text(endDate);
-
-      svgSelection.append('text')
-        .attr('class', 'label')
-        .attr('dx', '-40')
-        .attr('y', height/2)
-        .attr('text-anchor', 'middle')  
-        .text('°F');
     }
   };
   return graph
