@@ -58,7 +58,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngSanitize'])
 })
 
 .config(function(WeatherProvider) {
-  WeatherProvider.setApiKey('e7abc77487d7e3eb');
+  WeatherProvider.setApiKey('b8d5c0fe6df8fd48');
 })
 
 .config(['$routeProvider', function($routeProvider) {
